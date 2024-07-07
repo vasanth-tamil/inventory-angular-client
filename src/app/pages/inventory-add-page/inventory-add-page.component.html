@@ -7,21 +7,51 @@
                 <p class="subtitle is-size-6 mt-2">Create new inventory with name and quantity</p>
                 
                 <div class="field">
-                    <label class="label">Select Product</label>
+                    <label class="label">Item Name</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Enter item name" name="item_name"/>
+                    </div>
+                </div>
+                <div class="field mt-4">
+                    <label class="label">Select Category</label>
                     <div class="control">
                         <div class="select is-fullwidth">
-                            <select>
-                                <option>Product 001</option>
-                                <option>Product 002</option>
+                            <select name="category">
+                                @for(inventoryCategory of inventoryCategories; track inventoryCategory) {
+                                    <option value="{{inventoryCategory}}">{{ inventoryCategory }}</option>
+                                }
                             </select>
                         </div>
                     </div>
                 </div>
                 
-                <div class="field">
-                    <label class="label">Quantity on hand</label>
+                <div class="field mt-4">
+                    <label class="label">Supplier</label>
                     <div class="control">
-                        <input class="input" type="number" />
+                        <input class="input" type="text" placeholder="e.g., supplier" />
+                    </div>
+                </div>
+
+                <div class="field mt-4">
+                    <label class="label">Location</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="e.g., thanjavur" />
+                    </div>
+                </div>
+
+                <div class="is-flex is-gap-1">
+                    <div class="field mt-4">
+                        <label class="label">Quantity</label>
+                        <div class="control">
+                            <input class="input" type="number" placeholder="1" />
+                        </div>
+                    </div>
+    
+                    <div class="field mt-4">
+                        <label class="label">Unit Price</label>
+                        <div class="control">
+                            <input class="input" type="number" placeholder="0.00" />
+                        </div>
                     </div>
                 </div>
 
