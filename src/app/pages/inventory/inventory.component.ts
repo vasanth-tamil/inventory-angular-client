@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { InventoryInterface } from './inventory.interface';
+import { ApiConstant } from '../../../constants/api-contants';
 
 @Component({
   selector: 'app-inventory',
@@ -22,14 +23,14 @@ export class InventoryComponent {
 
   // fetch inventory list
   onFetch() {
-    this.http.get<InventoryInterface[]>('http://localhost:5000/inventory').subscribe((data) => {
+    this.http.get<InventoryInterface[]>(ApiConstant.inventory).subscribe((data) => {
       this.inventoryList = data;
     });
   }
 
   // delete inventory
   onDelete(id: number) {
-    this.http.delete(`http://localhost:5000/inventory/${id}`).subscribe((data) => {
+    this.http.delete(`${ApiConstant.inventory}/${id}`).subscribe((data) => {
       console.log("Deleted Successfully");
       this.onFetch();
     })
