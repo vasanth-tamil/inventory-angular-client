@@ -2,15 +2,14 @@
     <div class="content is-small">
         <h1>Inventory Management</h1>
         <p class="is-size-6">Simple inventory management system set up with angular limit set to 20</p>
-        <ol class="is-size-6">
-            <li>Donec blandit a lorem id convallis.</li>
-            <li>Cras gravida arcu at diam gravida gravida.</li>
-            <li>Integer in volutpat libero.</li>
-            <li>Donec a diam tellus.</li>
-        </ol>
+        <ul class="is-size-6">
+            <li>Add inventory.</li>
+            <li>Update inventory and set inventory limit.</li>
+            <li>Delete inventory.</li>
+            <li>Show inventory details.</li>
+        </ul>
         <blockquote class="is-size-6">
-            Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit
-            ipsum, ut blandit est tellus sit amet turpis.
+            Set inventory limit showing warning message. 
         </blockquote>
     </div>
 
@@ -19,7 +18,7 @@
             <h4 class="title is-size-5 mb-1 py-0">Inventory List</h4>
             <span>Showing 1 to 5 of 5 entries</span>
         </div>
-        <button class="button">Create New Inventory</button>
+        <a href="inventory-add" class="button">Create New Inventory</a>
     </div>
     <table class="table is-hoverable is-fullwidth mt-5">
         <thead>
@@ -38,7 +37,41 @@
                 <td>100</td>
                 <td>Food</td>
                 <td class="is-flex is-gap-1">
-                    <a href="#">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-checklist has-text-white">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" />
+                                    <path d="M14 19l2 2l4 -4" />
+                                    <path d="M9 8h4" />
+                                    <path d="M9 12h2" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu is-bordered" id="dropdown-menu4" role="menu">
+                            <div class="dropdown-content is-shadowless border">
+                                <div class="dropdown-item" style="width: 300px;">
+                                    <div>
+                                        <div class="mb-2">
+                                            <span class="has-text-white title is-size-6">Set Inventory Limit</span>
+                                        </div>
+                                        <div>
+                                            <label>Inventory Limit</label>
+                                            <input type="number" value="0.00" class="input"/>
+                                        </div>
+                                        <div class="is-flex is-gap-1 is-justify-content-end mt-4">
+                                            <button href="#" class="button is-small">Cancel</button>
+                                            <button href="#" class="button is-primary is-small">Set Limit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="inventory-update/1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-minus">
@@ -48,105 +81,38 @@
                             <path d="M16 19h6" />
                         </svg>
                     </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash has-text-danger">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 7l16 0" />
-                            <path d="M10 11l0 6" />
-                            <path d="M14 11l0 6" />
-                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                        </svg>
-                    </a>
-                </td>
-            </tr><tr>
-                <td>Apple</td>
-                <td>10</td>
-                <td>100</td>
-                <td>Food</td>
-                <td class="is-flex is-gap-1">
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-minus">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                            <path d="M13.5 6.5l4 4" />
-                            <path d="M16 19h6" />
-                        </svg>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash has-text-danger">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 7l16 0" />
-                            <path d="M10 11l0 6" />
-                            <path d="M14 11l0 6" />
-                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                        </svg>
-                    </a>
-                </td>
-            </tr><tr>
-                <td>Apple</td>
-                <td>10</td>
-                <td>100</td>
-                <td>Food</td>
-                <td class="is-flex is-gap-1">
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-minus">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                            <path d="M13.5 6.5l4 4" />
-                            <path d="M16 19h6" />
-                        </svg>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash has-text-danger">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 7l16 0" />
-                            <path d="M10 11l0 6" />
-                            <path d="M14 11l0 6" />
-                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                        </svg>
-                    </a>
-                </td>
-            </tr><tr>
-                <td>Apple</td>
-                <td>10</td>
-                <td>100</td>
-                <td>Food</td>
-                <td class="is-flex is-gap-1">
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-minus">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                            <path d="M13.5 6.5l4 4" />
-                            <path d="M16 19h6" />
-                        </svg>
-                    </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash has-text-danger">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 7l16 0" />
-                            <path d="M10 11l0 6" />
-                            <path d="M14 11l0 6" />
-                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                        </svg>
-                    </a>
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-trash has-text-danger">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M4 7l16 0" />
+                                    <path d="M10 11l0 6" />
+                                    <path d="M14 11l0 6" />
+                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu is-bordered" id="dropdown-menu4" role="menu">
+                            <div class="dropdown-content is-shadowless border">
+                                <div class="dropdown-item" style="width: 300px;">
+                                    <div>
+                                        <div>
+                                            <span class="has-text-white title is-size-6 mb-2">Are you sure?</span>
+                                        </div>
+                                        <span>You won't be able to revert this! confirm delete inventory.</span>
+                                        <div class="is-flex is-gap-1 is-justify-content-end mt-4">
+                                            <button href="#" class="button is-small">Cancel</button>
+                                            <button href="#" class="button is-danger is-small">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
