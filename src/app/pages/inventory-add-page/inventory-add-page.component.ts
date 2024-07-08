@@ -42,6 +42,12 @@ export class InventoryAddPageComponent {
 
   constructor(private http: HttpClient, private router: Router, private toast: NgToastService) { }
 
+  ngOnInit(): void {
+    if (!AuthHelper.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
+  }
+
   // fetch inventory list
   addInventory() {
     this.inventoryAddForm.markAllAsTouched();

@@ -22,7 +22,17 @@ export class InventoryComponent {
   inventoryList: InventoryInterface[] = [];
 
   ngOnInit() {
+    if (!AuthHelper.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
+
     this.onFetch();
+  }
+
+  onLogout() {
+    AuthHelper.removeToken()
+    this.toast.success("Logout Successfully", '', 2000);
+    this.router.navigate(['/']);
   }
 
   // fetch inventory list

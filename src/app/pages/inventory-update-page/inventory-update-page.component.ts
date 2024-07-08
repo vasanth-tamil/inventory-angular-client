@@ -44,6 +44,10 @@ export class InventoryUpdatePageComponent {
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private toast: NgToastService) { }
   
   ngOnInit(): void {
+    if (!AuthHelper.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
+
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.http.get<InventoryInterface>(`${ApiConstant.inventory}/${id}`).subscribe((data) => {
       this.inventoryUpdateForm = new FormGroup({
