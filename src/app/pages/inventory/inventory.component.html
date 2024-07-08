@@ -41,9 +41,9 @@
             </tr>
         </thead>
         <tbody>
-            @for(inventory of inventoryList; track inventory.ID) {
+            @for(inventory of inventoryList; track inventory.id) {
                 <tr>
-                    <td>{{ inventory.ID }}</td>
+                    <td>{{ inventory.id }}</td>
                     <td>{{ inventory.item_name }}</td>
                     <td>{{ inventory.category }}</td>
                     <td>{{ inventory.quantity }}</td>
@@ -68,7 +68,7 @@
                             <div class="dropdown-menu is-bordered" id="dropdown-menu4" role="menu">
                                 <div class="dropdown-content is-shadowless border">
                                     <div class="dropdown-item" style="width: 300px;">
-                                        <form (submit)="onSetLimit($event, inventory.ID!)">
+                                        <form (submit)="onSetLimit($event, inventory.id!)">
                                             <div class="mb-2">
                                                 <span class="has-text-white title is-size-6">Set Inventory Limit</span>
                                             </div>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="inventory-update/{{ inventory.ID! }}" class="">
+                        <a href="inventory-update/{{ inventory.id! }}" class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                 class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-minus">
@@ -120,7 +120,7 @@
                                             <span>You won't be able to revert this! confirm delete inventory.</span>
                                             <div class="is-flex is-gap-1 is-justify-content-end mt-4">
                                                 <button href="#" class="button is-small">Cancel</button>
-                                                <button (click)="onDelete(inventory.ID!)" class="button is-danger is-small">Delete</button>
+                                                <button (click)="onDelete(inventory.id!)" class="button is-danger is-small">Delete</button>
                                             </div>
                                         </div>
                                     </div>

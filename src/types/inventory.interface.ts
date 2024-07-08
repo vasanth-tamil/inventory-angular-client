@@ -1,5 +1,5 @@
 export interface InventoryInterface {
-  ID?: number
+  id?: number
   category: string
   date_added?: string
   item_name: string
