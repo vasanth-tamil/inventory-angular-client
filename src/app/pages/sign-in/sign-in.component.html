@@ -1,21 +1,34 @@
 <section class="hero is-fullheight">
     <div class="hero-body is-flex is-mobile-flex-column">
         <div class="is-flex-grow-1">
-            <form class="sign-in-container mx-auto">
+            <form class="sign-in-container mx-auto" [formGroup]="signInForm">
 
                 <p class="title has-text-centered">Sign in</p>
 
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        <input class="input" type="email" placeholder="e.g. tamil@algoalphatech.com" />
+                        <input class="input" type="email" placeholder="e.g. tamil@algoalphatech.com" formControlName="email"/>
+                        @if(signInForm.controls['email'].invalid && (signInForm.controls['email'].touched || signInForm.controls['email'].dirty)) {
+                            @if(signInForm.controls['email'].errors?.['required']) {
+                                <div class="has-text-danger mt-2">required Field</div>
+                            }
+                            @if(signInForm.controls['email'].errors?.['email']) {
+                                <div class="has-text-danger mt-2">Invalid Email</div>
+                            }
+                        }
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Password</label>
                     <div class="control">
-                        <input class="input" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                        <input class="input" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" formControlName="password"/>
+                        @if(signInForm.controls['password'].invalid && (signInForm.controls['password'].touched || signInForm.controls['password'].dirty)) {
+                            @if(signInForm.controls['password'].errors?.['required']) {
+                                <div class="has-text-danger mt-2">required Field</div>
+                            }
+                        }
                     </div>
                 </div>
 
@@ -23,7 +36,7 @@
                     <label>Don't have an account ? <a href="sign-up" class="is-size-6">Sign Up</a></label>
                 </div>
 
-                <button class="button is-primary is-fullwidth mt-5 is-uppercase">Sign in</button>
+                <button type="button" (click)="onSignIn()" class="button is-primary is-fullwidth mt-5 is-uppercase">Sign in</button>
             </form>
         </div>
     </div>

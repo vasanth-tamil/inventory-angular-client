@@ -1,28 +1,50 @@
 <section class="hero is-fullheight">
     <div class="hero-body is-flex is-mobile-flex-column">
         <div class="is-flex-grow-1">
-            <form class="sign-up-container mx-auto">
+            <form class="sign-up-container mx-auto" [formGroup]="signUpForm">
 
-                <p class="title has-text-centered">Sign Up</p>
+                <div class="has-text-centered">
+                    <p class="title mb-1">Register</p>
+                    <label>Create new account</label>
+                </div>
 
-                <div class="field">
+                <div class="field mt-5">
                     <label class="label">Email</label>
                     <div class="control">
-                        <input class="input" type="email" placeholder="e.g. tamil@algoalphatech.com" />
+                        <input class="input" type="email" placeholder="e.g. tamil@algoalphatech.com" formControlName="email" /> 
+                        @if(signUpForm.controls['email'].invalid && (signUpForm.controls['email'].touched || signUpForm.controls['email'].dirty)) {
+                            @if(signUpForm.controls['email'].errors?.['required']) {
+                                <div class="has-text-danger mt-2">required Field</div>
+                            }
+                            @if(signUpForm.controls['email'].errors?.['email']) {
+                                <div class="has-text-danger mt-2">Invalid Email</div>
+                            }
+                        }
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Password</label>
                     <div class="control">
-                        <input class="input" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                        <input class="input" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" formControlName="password"/>
+                        @if(signUpForm.controls['password'].invalid && (signUpForm.controls['password'].touched || signUpForm.controls['password'].dirty)) {
+                            @if(signUpForm.controls['password'].errors?.['required']) {
+                                <div class="has-text-danger mt-2">required Field</div>
+                            }
+                        }
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Re Enter Password</label>
                     <div class="control">
-                        <input class="input" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                        <input class="input" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" formControlName="re_password"/>
+                        @if(signUpForm.controls['re_password'].invalid && (signUpForm.controls['re_password'].touched ||
+                            signUpForm.controls['re_password'].dirty)) {
+                            @if(signUpForm.controls['re_password'].errors?.['required']) {
+                                <div class="has-text-danger mt-2">required Field</div>
+                            } 
+                        }
                     </div>
                 </div>
 
@@ -30,7 +52,7 @@
                     <label>Already have an account ? <a href="/" class="is-size-6">Sign In</a></label>
                 </div>
 
-                <button class="button is-primary is-fullwidth mt-5 is-uppercase">Sign UP</button>
+                <button type="button" (click)="onSignUp()" class="button is-primary is-fullwidth mt-5 is-uppercase">Sign UP</button>
             </form>
         </div>
     </div>
