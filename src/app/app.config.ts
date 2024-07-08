@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
 
 export const appConfig: ApplicationConfig = {
   providers: [

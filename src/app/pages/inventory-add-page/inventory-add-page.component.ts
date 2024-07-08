@@ -6,11 +6,13 @@ import { AuthHelper } from '../../../utils/auth_helper';
 import { ApiConstant } from '../../../constants/api-contants';
 import { Response } from '../../../types/response.type';
 import { InventoryInterface } from '../../../types/inventory.interface';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inventory-add-page',
   standalone: true,
-  imports: [NgFor, FormsModule, ReactiveFormsModule],
+  imports: [NgFor, FormsModule, ReactiveFormsModule, NgToastModule],
   templateUrl: './inventory-add-page.component.html',
   styleUrl: './inventory-add-page.component.css'
 })
@@ -38,7 +40,7 @@ export class InventoryAddPageComponent {
     location: new FormControl('', [Validators.required]),
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private toast: NgToastService) { }
 
   // fetch inventory list
   addInventory() {
@@ -50,7 +52,9 @@ export class InventoryAddPageComponent {
       const barearHeader = AuthHelper.getBarearHeader();
       const requestData: any = this.inventoryAddForm.value;
       this.http.post<Response>(ApiConstant.inventory, requestData, {headers: barearHeader as any}).subscribe((data) => {
-        console.log(data);
+        
+        this.toast.success("Inventory Added Successfully", '', 2000);
+        this.router.navigate(['inventory']);
         this.inventoryAddForm.reset();
       });
     }

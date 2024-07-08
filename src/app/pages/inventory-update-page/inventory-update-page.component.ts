@@ -6,12 +6,13 @@ import { AuthHelper } from '../../../utils/auth_helper';
 import { ApiConstant } from '../../../constants/api-contants';
 import { Response } from '../../../types/response.type';
 import { InventoryInterface } from '../../../types/inventory.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-inventory-update-page',
   standalone: true,
-  imports: [NgFor, FormsModule, ReactiveFormsModule],
+  imports: [NgFor, FormsModule, ReactiveFormsModule, NgToastModule],
   templateUrl: './inventory-update-page.component.html',
   styleUrl: './inventory-update-page.component.css'
 })
@@ -40,7 +41,7 @@ export class InventoryUpdatePageComponent {
     warning_limit: new FormControl('5'),
   });
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private toast: NgToastService) { }
   
   ngOnInit(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -66,13 +67,15 @@ export class InventoryUpdatePageComponent {
     if (this.inventoryUpdateForm.valid) {
       console.log(requestData.quantity, requestData.warning_limit)
       // check limit
-      if (requestData.quantity < requestData.warning_limit) {
-        alert("limit error");
+      if (requestData.quantity >= requestData.warning_limit) {
+        this.toast.danger("Inventory Quantity Must Be Greater Than Warning Limit", '', 2000);
       }
 
       console.log(requestData);
       this.http.put<Response>(`${ApiConstant.inventory}/${id}`, requestData, {headers: barearHeader as any}).subscribe((data) => {
-        console.log(data); 
+        
+        this.toast.success("Inventory Added Successfully", '', 2000);
+        this.router.navigate(['inventory']); 
       });
     }
 

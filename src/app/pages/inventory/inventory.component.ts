@@ -4,17 +4,19 @@ import { InventoryInterface } from '../../../types/inventory.interface';
 import { ApiConstant } from '../../../constants/api-contants';
 import { AuthHelper } from '../../../utils/auth_helper';
 import { FormControl, FormGroup, NgModel, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-inventory',
   standalone: true,
-  imports: [],
+  imports: [NgToastModule],
   templateUrl: './inventory.component.html',
   styleUrl: './inventory.component.css'
 })
 export class InventoryComponent {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private toast: NgToastService) { }
 
   // inventory data list
   inventoryList: InventoryInterface[] = [];
@@ -36,7 +38,8 @@ export class InventoryComponent {
     const requestLimitData = { limit: event.target.limit.value };
     const barearHeader = AuthHelper.getBarearHeader();
     this.http.post(`${ApiConstant.inventory}/set-limit/${id}`, requestLimitData, {headers: barearHeader as any}).subscribe((data) => {
-      console.log(data);
+        this.toast.success("Inventory Limit Set Successfully", '', 2000);
+        this.onFetch();
     })
   }
 
@@ -44,7 +47,7 @@ export class InventoryComponent {
   onDelete(id: number) {
     const barearHeader = AuthHelper.getBarearHeader();
     this.http.delete(`${ApiConstant.inventory}/${id}`, {headers: barearHeader as any}).subscribe((data) => {
-      console.log("Deleted Successfully");
+      this.toast.success("Inventory Deleted Successfully", '', 2000);
       this.onFetch();
     })
   }
