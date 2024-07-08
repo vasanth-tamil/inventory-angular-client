@@ -1,11 +1,16 @@
 import { NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthHelper } from '../../../utils/auth_helper';
+import { ApiConstant } from '../../../constants/api-contants';
+import { Response } from '../../../types/response.type';
+import { InventoryInterface } from '../../../types/inventory.interface';
 
 @Component({
   selector: 'app-inventory-add-page',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, FormsModule, ReactiveFormsModule],
   templateUrl: './inventory-add-page.component.html',
   styleUrl: './inventory-add-page.component.css'
 })
@@ -24,11 +29,31 @@ export class InventoryAddPageComponent {
     "Automotive Parts"
   ];
 
-  constructor(http: HttpClient) { }
+  inventoryAddForm = new FormGroup({
+    item_name: new FormControl('', [Validators.required]),
+    category: new FormControl('Electronics', [Validators.required]),
+    quantity: new FormControl('', [Validators.required]),
+    unit_price: new FormControl('', [Validators.required]),
+    supplier: new FormControl('', [Validators.required]),
+    location: new FormControl('', [Validators.required]),
+  });
 
+  constructor(private http: HttpClient) { }
 
-  protected addInventory() {
-    console.log(this)
+  // fetch inventory list
+  addInventory() {
+    this.inventoryAddForm.markAllAsTouched();
+
+    console.log(this.inventoryAddForm.value)
+ 
+    if (this.inventoryAddForm.valid) {
+      const barearHeader = AuthHelper.getBarearHeader();
+      const requestData: any = this.inventoryAddForm.value;
+      this.http.post<Response>(ApiConstant.inventory, requestData, {headers: barearHeader as any}).subscribe((data) => {
+        console.log(data);
+        this.inventoryAddForm.reset();
+      });
+    }
+
   }
-
 }

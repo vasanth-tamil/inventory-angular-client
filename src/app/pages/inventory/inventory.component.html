@@ -61,24 +61,24 @@
                             <div class="dropdown-menu is-bordered" id="dropdown-menu4" role="menu">
                                 <div class="dropdown-content is-shadowless border">
                                     <div class="dropdown-item" style="width: 300px;">
-                                        <div>
+                                        <form (submit)="onSetLimit($event, inventory.ID!)">
                                             <div class="mb-2">
                                                 <span class="has-text-white title is-size-6">Set Inventory Limit</span>
                                             </div>
                                             <div>
                                                 <label>Inventory Limit</label>
-                                                <input type="number" value="0.00" class="input"/>
+                                                <input type="number" value="{{ inventory.warning_limit }}" class="input" placeholder="Inventory Limit" ngModel name="limit"/>
                                             </div>
                                             <div class="is-flex is-gap-1 is-justify-content-end mt-4">
-                                                <button href="#" class="button is-small">Cancel</button>
-                                                <button href="#" class="button is-primary is-small">Set Limit</button>
+                                                <button type="button" href="#" class="button is-small">Cancel</button>
+                                                <button type="submit" class="button is-primary is-small">Set Limit</button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a href="inventory-update/1">
+                        <a href="inventory-update/{{ inventory.ID! }}" class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                 class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-minus">
@@ -113,7 +113,7 @@
                                             <span>You won't be able to revert this! confirm delete inventory.</span>
                                             <div class="is-flex is-gap-1 is-justify-content-end mt-4">
                                                 <button href="#" class="button is-small">Cancel</button>
-                                                <button (click)="onDelete(inventory.ID)" class="button is-danger is-small">Delete</button>
+                                                <button (click)="onDelete(inventory.ID!)" class="button is-danger is-small">Delete</button>
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
         </tbody>
     </table>
 
-    <div>
+    <!-- <div>
         <nav class="pagination is-small is-centered" role="navigation" aria-label="pagination">
             <a href="#" class="pagination-previous">Previous</a>
             <a href="#" class="pagination-next">Next page</a>
@@ -141,5 +141,5 @@
                 <li><a href="#" class="pagination-link" aria-label="Goto page 86">86</a></li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 </section>

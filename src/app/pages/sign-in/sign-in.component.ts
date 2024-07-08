@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ApiConstant } from '../../../constants/api-contants';
 import { SignInResponse } from '../../../types/sign-in-response.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,7 +20,7 @@ export class SignInComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   onSignIn() {
     this.signInForm.markAllAsTouched();
@@ -28,6 +29,8 @@ export class SignInComponent {
       this.http.post<SignInResponse>(ApiConstant.signIn, this.signInForm.value).subscribe((data) => {
         // save token
         localStorage.setItem('token', data.token);
+        this.signInForm.reset();
+        this.router.navigate(['inventory']);
       });
     }
   }

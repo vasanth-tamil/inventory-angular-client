@@ -1,7 +1,7 @@
 <section class="hero is-fullheight">
     <div class="hero-body is-flex is-mobile-flex-column">
         <div class="is-flex-grow-1">
-            <form class="inventory-container mx-auto">
+            <form class="inventory-container mx-auto" [formGroup]="inventoryUpdateForm">
 
                 <p class="title">Update Inventory</p>
                 <p class="subtitle is-size-6 mt-2">Create new inventory with name and quantity</p>
@@ -9,16 +9,24 @@
                 <div class="field">
                     <label class="label">Item Name</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="Enter item name" />
+                        <input class="input" type="text" placeholder="Enter item name" formControlName="item_name" />
+                        @if(inventoryUpdateForm.controls['item_name'].invalid &&
+                        (inventoryUpdateForm.controls['item_name'].touched ||
+                        inventoryUpdateForm.controls['item_name'].dirty)) {
+                            @if(inventoryUpdateForm.controls['item_name'].errors?.['required']) {
+                                <div class="has-text-danger mt-2">required Field</div>
+                            }
+                        }
                     </div>
                 </div>
                 <div class="field mt-4">
                     <label class="label">Select Category</label>
                     <div class="control">
                         <div class="select is-fullwidth">
-                            <select>
-                                <option>Category 001</option>
-                                <option>Category 002</option>
+                            <select formControlName="category">
+                                @for(inventoryCategory of inventoryCategories; track inventoryCategory) {
+                                <option value="{{inventoryCategory}}">{{ inventoryCategory }}</option>
+                                }
                             </select>
                         </div>
                     </div>
@@ -27,14 +35,27 @@
                 <div class="field mt-4">
                     <label class="label">Supplier</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="e.g., supplier" />
+                        <input class="input" type="text" placeholder="e.g., supplier" formControlName="supplier" />
+                        @if(inventoryUpdateForm.controls['supplier'].invalid &&
+                        (inventoryUpdateForm.controls['supplier'].touched || inventoryUpdateForm.controls['supplier'].dirty)) {
+                            @if(inventoryUpdateForm.controls['supplier'].errors?.['required']) {
+                                <div class="has-text-danger mt-2">required Field</div>
+                            }
+                        }
                     </div>
                 </div>
 
                 <div class="field mt-4">
                     <label class="label">Location</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="e.g., thanjavur" />
+                        <input class="input" type="text" placeholder="e.g., thanjavur" formControlName="location" />
+                        @if(inventoryUpdateForm.controls['location'].invalid &&
+                        (inventoryUpdateForm.controls['location'].touched || inventoryUpdateForm.controls['location'].dirty))
+                        {
+                        @if(inventoryUpdateForm.controls['location'].errors?.['required']) {
+                        <div class="has-text-danger mt-2">required Field</div>
+                        }
+                        }
                     </div>
                 </div>
 
@@ -42,23 +63,36 @@
                     <div class="field mt-4">
                         <label class="label">Quantity</label>
                         <div class="control">
-                            <input class="input" type="number" placeholder="1" />
+                            <input class="input" type="number" placeholder="1" formControlName="quantity" />
+                            @if(inventoryUpdateForm.controls['quantity'].invalid &&
+                            (inventoryUpdateForm.controls['quantity'].touched ||
+                            inventoryUpdateForm.controls['quantity'].dirty)) {
+                            @if(inventoryUpdateForm.controls['quantity'].errors?.['required']) {
+                            <div class="has-text-danger mt-2">required Field</div>
+                            }
+                            }
                         </div>
                     </div>
 
                     <div class="field mt-4">
                         <label class="label">Unit Price</label>
                         <div class="control">
-                            <input class="input" type="number" placeholder="0.00" />
+                            <input class="input" type="number" placeholder="0.00" formControlName="unit_price" />
+                            @if(inventoryUpdateForm.controls['unit_price'].invalid &&
+                            (inventoryUpdateForm.controls['unit_price'].touched ||
+                            inventoryUpdateForm.controls['unit_price'].dirty)) {
+                            @if(inventoryUpdateForm.controls['unit_price'].errors?.['required']) {
+                            <div class="has-text-danger mt-2">required Field</div>
+                            }
+                            }
                         </div>
                     </div>
                 </div>
 
-
-
                 <div class="is-flex is-gap-1">
                     <a href="inventory" class="button is-fullwidth mt-5 is-uppercase">Inventory</a>
-                    <button class="button is-primary is-fullwidth mt-5 is-uppercase">Create</button>
+                    <button type="button" (click)="updateInventory()"
+                        class="button is-primary is-fullwidth mt-5 is-uppercase">Update</button>
                 </div>
             </form>
         </div>
