@@ -12,7 +12,7 @@ import { NgToastModule, NgToastService } from 'ng-angular-popup';
   standalone: true,
   imports: [FormsModule, CommonModule, ReactiveFormsModule, NgToastModule],
   templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.css'
+  styleUrl: './sign-in.component.css',
 })
 export class SignInComponent {
 
@@ -22,8 +22,10 @@ export class SignInComponent {
   });
 
   constructor(private http: HttpClient, private router: Router, private toast: NgToastService) { }
+  isAnimate: boolean = false;
 
   onSignIn() {
+    this.isAnimate = false;
     this.signInForm.markAllAsTouched();
     
     if(this.signInForm.valid) {
@@ -32,8 +34,12 @@ export class SignInComponent {
         this.toast.success("Login Successfully", '', 2000);
         localStorage.setItem('token', data.token);
         this.signInForm.reset();
-        this.router.navigate(['inventory']);
+        setTimeout(() => {
+          this.router.navigate(['inventory']);
+        }, 1000);
       });
+    } else {
+      this.isAnimate = true
     }
   }
 

@@ -7,7 +7,10 @@ import { NgToastModule } from 'ng-angular-popup';
   standalone: true,
   imports: [RouterOutlet, NgToastModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  animations:[
+
+  ],
 })
 export class AppComponent {
   title = 'inventory web client';
