@@ -9,13 +9,13 @@
                 <button (click)="onLogout()" class="button">Logout</button>
             </div>
         </div>
-        <blockquote class="is-size-6 has-text-warning mt-2">
-            @for(inventory of inventoryList; track inventory.id) {
-                @if (inventory.quantity <= inventory.warning_limit) {
+        @for(inventory of inventoryList; track inventory.id) {
+            @if (inventory.quantity <= inventory.warning_limit) {
+                <blockquote class="is-size-6 py-2 mt-0 has-text-warning mt-2">
                     <p>Only  <b>{{ inventory.item_name }}</b> items is still low in stock</p> 
-                }
+                </blockquote>
             }
-        </blockquote>
+        }
     </div>
 
     <div class="is-flex is-align-items-center is-justify-content-space-between">
