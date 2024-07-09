@@ -36,9 +36,12 @@ export class InventoryComponent {
   }
 
   // fetch inventory list
+  warningCount: number = 0;
+  
   onFetch() {
     const barearHeader = AuthHelper.getBarearHeader();
     this.http.get<InventoryInterface[]>(ApiConstant.inventory, {headers: barearHeader as any}).subscribe((data) => {
+      this.warningCount = data.filter((inventory) => inventory.quantity <= inventory.warning_limit).length;
       this.inventoryList = data;
     });
   }

@@ -11,6 +11,47 @@
                 <button (click)="onLogout()" class="button">Logout</button>
             </div>
         </div>
+        <div class="grid">
+            <div class="p-5 is-flex is-justify-content-space-between dashboard-card">
+                <div>
+                    <h3>{{ inventoryList.length }}</h3>
+                    <div class="has-text-primary is-size-6">Total Products</div>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline has-text-primary icon-tabler-packages">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7 16.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
+                        <path d="M2 13.5v5.5l5 3" />
+                        <path d="M7 16.545l5 -3.03" />
+                        <path d="M17 16.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
+                        <path d="M12 19l5 3" />
+                        <path d="M17 16.5l5 -3" />
+                        <path d="M12 13.5v-5.5l-5 -3l5 -3l5 3v5.5" />
+                        <path d="M7 5.03v5.455" />
+                        <path d="M12 8l5 -3" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="p-5 is-flex is-justify-content-space-between dashboard-card">
+                <div>
+                    <h3>{{ warningCount }}</h3>
+                    <div class="has-text-warning is-size-6">Total Warnings</div>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline has-text-warning icon-tabler-exclamation-circle">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                        <path d="M12 9v4" />
+                        <path d="M12 16v.01" />
+                    </svg>
+                </div>
+            </div>
+        </div>
         @for(inventory of inventoryList; track inventory.id) {
             @if (inventory.quantity <= inventory.warning_limit) {
                 <blockquote class="is-size-6 py-2 mt-0 has-text-warning mt-2">

@@ -18,3 +18,12 @@
     object-position: center;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.dashboard-card{
+    background-color: #fdfdfd1a;
+}
