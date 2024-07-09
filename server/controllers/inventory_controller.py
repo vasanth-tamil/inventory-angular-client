@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, current_app, request
 from datetime import datetime
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from helpers.validation_helper import ValidationHelper
 from models.inventory import Inventory
 from models.db import db
@@ -10,7 +10,7 @@ inventory_controller = Blueprint('inventory_controller', __name__)
 @inventory_controller.route('/inventory', methods=['GET'])
 @jwt_required()
 def list_inventory():
-    inventories = Inventory.query.all()
+    inventories = Inventory.query.filter_by(user_id=get_jwt_identity()).all()
     inventories = [inv.to_dict() for inv in inventories]
     return inventories, 200
 
@@ -34,7 +34,7 @@ def add_inventory():
         "unit_price": "required",
         "supplier": "required",
         "category": "required",
-        "location": "required",
+        "location": "required"
     }
     isError, validationData = ValidationHelper.validate_data(requestData, validationRules)
 
@@ -45,7 +45,7 @@ def add_inventory():
     item = Inventory.query.filter_by(item_name=requestData.get('item_name')).first()
     if item:
         return jsonify({'message': 'Inventory item already exists'}), 409
-
+    
     # insert data
     inventory = Inventory( 
         item_name = requestData.get('item_name'),
@@ -55,7 +55,8 @@ def add_inventory():
         supplier = requestData.get('supplier', None),
         date_added = datetime.now(),
         warning_limit = requestData.get('warning_limit', 0),
-        location = requestData.get('location', None)
+        location = requestData.get('location', None),
+        user_id = get_jwt_identity()
     )
     db.session.add(inventory)
     db.session.commit()

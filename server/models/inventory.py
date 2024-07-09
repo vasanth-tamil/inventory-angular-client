@@ -10,6 +10,7 @@ class Inventory(db.Model):
     last_update = db.Column(db.Date)
     warning_limit = db.Column(db.Integer)
     location = db.Column(db.String(100))
+    user_id = db.Column(db.Integer())
 
     def __repr__(self):
         return f'<Inventory {self.item_name}>'
