@@ -5,6 +5,11 @@
     padding: 2rem;
     border-radius: 1rem;
 }
+.container-sign {
+    display: flex;
+    justify-content: end;
+    margin-right: 10%;
+}
 
 .logo {
     position: absolute;
