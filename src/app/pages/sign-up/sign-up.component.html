@@ -1,6 +1,9 @@
 <section class="hero is-fullheight">
     <div class="hero-body is-flex is-mobile-flex-column">
-        <div class="is-flex-grow-1">
+        <div class="is-flex-1 is-flex is-justify-content-center">
+            <img src="assets/image_1.svg" alt="logo" class="logo">
+        </div>
+        <div class="is-flex-1">
             <form class="sign-up-container mx-auto" [formGroup]="signUpForm">
 
                 <div class="has-text-centered">
@@ -49,10 +52,10 @@
                 </div>
 
                 <div class="field"> 
-                    <label>Already have an account ? <a href="/" class="is-size-6">Sign In</a></label>
+                    <label>Already have an account ? <a href="/" class="is-size-6">Login</a></label>
                 </div>
 
-                <button type="button" (click)="onSignUp()" class="button is-primary is-fullwidth mt-5 is-uppercase">Sign UP</button>
+                <button type="button" (click)="onSignUp()" class="button is-primary is-fullwidth mt-5 is-uppercase">Register</button>
             </form>
         </div>
     </div>
