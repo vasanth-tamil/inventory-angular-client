@@ -4,3 +4,16 @@
 .border {
     border: 1px solid gray;
 }
+
+.background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.1;
+    background-repeat: repeat;
+    object-fit: cover;
+    object-position: center;
+}
+

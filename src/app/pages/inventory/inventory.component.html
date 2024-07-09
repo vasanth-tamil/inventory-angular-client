@@ -1,8 +1,10 @@
 <section class="p-5 container">
+    <img src="assets/element.png" alt="logo" class="logo mb-3 background">
+
     <div class="content is-small">
         <div class="is-flex is-justify-content-space-between is-align-items-center">
-            <div>
-                <h1>Inventory Dashboard</h1>
+            <div class="py-4">
+                <h1 class="has-text-primary">Inventory Dashboard</h1>
                 <p class="is-size-6">Simple inventory management system set up with angular limit set to 20</p>
             </div>
             <div>
@@ -21,7 +23,7 @@
     <div class="is-flex is-align-items-center is-justify-content-space-between">
         <div>
             <h4 class="title is-size-5 mb-1 py-0">Inventory List</h4>
-            <span>Showing 1 to 5 of 5 entries</span>
+            <span>Showing all the inventory {{ inventoryList.length }} items</span>
         </div>
         <a href="inventory-add" class="button">Create New Inventory</a>
     </div>
