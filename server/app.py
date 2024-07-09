@@ -26,7 +26,7 @@ def main():
         # app.config['MYSQL_USER'] = 'root'
         # app.config['MYSQL_PASSWORD'] = ''
         # app.config['MYSQL_DB'] = 'inventory_database'
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost:3306/inventory_database'
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Password%401@localhost/inventory_database'
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
         db.init_app(app)

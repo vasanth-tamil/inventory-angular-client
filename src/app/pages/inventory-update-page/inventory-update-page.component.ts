@@ -69,18 +69,11 @@ export class InventoryUpdatePageComponent {
     const requestData: any = this.inventoryUpdateForm.value;
 
     if (this.inventoryUpdateForm.valid) {
-      // check limit
-      if (requestData.quantity >= requestData.warning_limit) {
-        this.toast.danger("Inventory Quantity Must Be Greater Than Warning Limit", '', 2000);
-      } else {
-        this.http.put<Response>(`${ApiConstant.inventory}/${id}`, requestData, {headers: barearHeader as any}).subscribe((data) => {
-          
-          this.toast.success("Inventory Added Successfully", '', 2000);
-          this.router.navigate(['inventory']); 
-        });
-
-      }
-
+      this.http.put<Response>(`${ApiConstant.inventory}/${id}`, requestData, {headers: barearHeader as any}).subscribe((data) => {
+        
+        this.toast.success("Inventory Added Successfully", '', 2000);
+        this.router.navigate(['inventory']); 
+      });
     }
 
   }

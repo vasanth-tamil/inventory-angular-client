@@ -30,7 +30,7 @@ export class SignUpComponent {
     if(this.signUpForm.valid) {
       this.http.post(ApiConstant.signUp, this.signUpForm.value).subscribe((data) => {
         this.toast.success("Sign Up Successfully", '', 2000);
-        this.router.navigate(['sign-in']);
+        this.router.navigate(['/']);
 
         this.signUpForm.reset();
       });

@@ -2,21 +2,19 @@
     <div class="content is-small">
         <div class="is-flex is-justify-content-space-between is-align-items-center">
             <div>
-                <h1>Inventory Management</h1>
+                <h1>Inventory Dashboard</h1>
                 <p class="is-size-6">Simple inventory management system set up with angular limit set to 20</p>
             </div>
             <div>
                 <button (click)="onLogout()" class="button">Logout</button>
             </div>
         </div>
-        <ul class="is-size-6">
-            <li>Add inventory.</li>
-            <li>Update inventory and set inventory limit.</li>
-            <li>Delete inventory.</li>
-            <li>Show inventory details.</li>
-        </ul>
-        <blockquote class="is-size-6">
-            Set inventory limit showing warning message. 
+        <blockquote class="is-size-6 has-text-warning mt-2">
+            @for(inventory of inventoryList; track inventory.id) {
+                @if (inventory.quantity <= inventory.warning_limit) {
+                    <p>Only  <b>{{ inventory.item_name }}</b> items is still low in stock</p> 
+                }
+            }
         </blockquote>
     </div>
 
