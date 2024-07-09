@@ -6,7 +6,23 @@
     padding: 0;
     font-family: "Poppins", sans-serif;
 }
-
+:root {
+    --bulma-scheme-h: 236;
+    --bulma-scheme-s: 18%;
+    --bulma-light-l: 85%;
+    --bulma-light-invert-l: 23%;
+    --bulma-dark-l: 23%;
+    --bulma-dark-invert-l: 93%;
+    --bulma-soft-l: 23%;
+    --bulma-bold-l: 88%;
+    --bulma-soft-invert-l: 89%;
+    --bulma-bold-invert-l: 24%;
+    --bulma-hover-background-l-delta: 9%;
+    --bulma-hover-border-l-delta: 14%;
+    --bulma-active-border-l-delta: 23%;
+    --bulma-hover-color-l-delta: 9%;
+    --bulma-hover-shadow-a-delta: 4;
+}
 body {
     min-height: 100vh;
     min-width: 100vw;
